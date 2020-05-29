@@ -15,4 +15,4 @@ This project uses several tools:
 - Test platform [Catch2](https://github.com/catchorg/Catch2).
 - Documentation generator [Doxygen](https://www.doxygen.nl/index.html).
 - Generate code coverage report [gcov](https://linux.die.net/man/1/gcov).
-- Generate graphical coverage report[lcov](https://wiki.documentfoundation.org/Development/Lcov).
+- Generate graphical coverage report [lcov](https://wiki.documentfoundation.org/Development/Lcov).
