@@ -3,8 +3,7 @@ macro(create_test target)
   # To allow absolute header paths in includes
   include_directories(
     ${CMAKE_SOURCE_DIR}/external
-    ${CMAKE_SOURCE_DIR}/src/game
-    ${CMAKE_SOURCE_DIR}/src/include
+    ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/tests
   )
   # To create a target that can run via ctest

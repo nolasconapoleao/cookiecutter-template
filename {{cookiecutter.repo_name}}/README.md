@@ -92,7 +92,7 @@ make {{cookiecutter.project_name}}
 
 3. Execute project target
 ```
-(WINDOWS) double-click executable in bin/Console-Game.exe
+(WINDOWS) double-click executable in bin/{{cookiecutter.project_name}}.exe
 (LINUX)   ./bin/{{cookiecutter.project_name}}
 ```
 <br/>
