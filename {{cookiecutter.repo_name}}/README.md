@@ -1,78 +1,105 @@
 # {{cookiecutter.project_name}}
 
-{{cookiecutter.project_short_description}}
+{{cookiecutter.project_short_description}}.<br/><br/>
 
 ## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.<br/><br/>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
+## Build dependencies
+These are the dependencies for the compilation of all the targets
 ```
-clang-format
 cmake
+cmake-format
+clang-format
 doxygen
 gcov
-lcov
+ccache
 ```
+<br/>
 
-### Building and running
+# Build instructions for development
+## Create make files for each target (via cmake)
+Run the cmake command and output the make recipe in the build folder
+```
+mkdir -p build/debug
+cd build/debug
+cmake -DCMAKE_BUILD_TYPE=Debug ../..
+```
+<br/>
 
-1. Run the cmake project and output the make recipe in the build folder
-```
-mkdir -p build/linux
-cd build/linux
-cmake -DCOMPILE_FOR_NON_UNIX:BOOL=OFF ../..
-```
+## Build the continuous integration targets
+Supported targets for continuous integration include:
 
-2. Build the library and all the executables defined in the Cmake 
-```
-make ${Project}
-```
+    - Documentation
+    - Coverage
+    - Automatic tests
+    - Static code analysis
+    - Dynamic code analysis
+<br/>
 
-3. Run the game in the console
+Run the jobs by running
 ```
-./${Project}
+make Documentation
+make Coverage
+make all && make test
 ```
+<br/>
 
-### Building and running in windows
-In order to compile this game as an exe, use MinGW.
+## Run code linters locally 
+In order to merge to master the code in the pull request should be formatted using the checks defined in the project.
+```
+clang-format -i $filename
+cmake-format -i $filename
+```
+<br/>
 
-1. Install MinGW (Instructions in): 
-http://www.mingw.org/wiki/getting_started
-
-```
-mkdir -p build/windows
-cd build/windows
-cmake -DCOMPILE_FOR_NON_UNIX:BOOL=ON -DCMAKE_BUILD_TYPE=Release ../..
-```
-
-2. Build the library and all the executables defined in the Cmake
-```
-make ${Project}
-```
-
-3. Run the game in the console
-```
-wine64 ${Project}.exe
-OR double click it if you are in windows
-```
-
-### And coding style tests
-
-In order to merge to master the code in the pull request should be formatted using the checks defined in <project>/.clang-format. To run the clang-format use:
-```
-clang-format -i $file
-```
-
-Another way is to use automatic formatting.
+Code formating compliance can also be checked via pre commit hook.
 ```
 cd <project-path>
 cp tools/pre-commit.sh .git/hooks/pre-commit
 chmod +x .git/hooks/pre-commit
 ```
+<br/><br/>
+
+## Code analysis
+```
+mkdir -p build/debug++
+cd build/debug++
+cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_DIAGNOSTIC_TOOLS=ON ../..
+make all
+```
+<br/><br/>
+
+## Build and execute project
+
+1. Create project target in release mode
+```
+mkdir -p build/release
+cd build/release
+cmake -DCMAKE_BUILD_TYPE=Release ../..
+```
+Note : For windows build.
+ - Install build toolchain with [MinGW](http://www.mingw.org/wiki/getting_started)
+ - Set the cmake option for windows build DUNIX_COMPILATION=OFF
+```
+cmake -DCMAKE_BUILD_TYPE=Release -DUNIX_COMPILATION=OFF ../..
+```
+
+2. Build the project
+```
+make {{cookiecutter.project_name}}
+```
+
+3. Execute project target
+```
+(WINDOWS) double-click executable in bin/Console-Game.exe
+(LINUX)   ./bin/{{cookiecutter.project_name}}
+```
+<br/>
+
+## Future work
+- Add contribution guidelines
+<br/><br/>
 
 ## Authors
-* **{{cookiecutter.full_name}}** - *Initial work* - [{{cookiecutter.github_username}}]({{cookiecutter.email}})
+* **Nolasco Napoleao** - [nolasconapoleao](https://github.com/nolasconapoleao)
