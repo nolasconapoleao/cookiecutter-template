@@ -1,11 +1,7 @@
-//
-// Created by nolasco on 14/05/20.
-//
-
 #define CATCH_CONFIG_MAIN
 #include <catch2/single_include/catch2/catch.hpp>
 
-#include "utils/MathUtils.h"
+#include "libsample/MathUtils.h"
 
 using namespace MathUtils;
 

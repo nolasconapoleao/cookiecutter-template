@@ -1,7 +1,3 @@
-//
-// Created by nolasco on 14/05/20.
-//
-
 #include "MathUtils.h"
 
 #include <chrono>

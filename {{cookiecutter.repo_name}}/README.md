@@ -1,5 +1,4 @@
 # {{cookiecutter.project_name}}
-
 {{cookiecutter.project_short_description}}.<br/><br/>
 
 ## Getting Started
@@ -101,5 +100,9 @@ make {{cookiecutter.project_name}}
 - Add contribution guidelines
 <br/><br/>
 
-## Authors
-* **Nolasco Napoleao** - [nolasconapoleao](https://github.com/nolasconapoleao)
+## IDE setup
+Visual studio code [config](https://github.com/nolasconapoleao/.vscode)
+<br/><br/>
+
+## Generator
+Project generated using [cookiecutter project](https://github.com/nolasconapoleao/cookiecutter-template)

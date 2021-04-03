@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "utils/MathUtils.h"
+#include "libsample/MathUtils.h"
 
 int main() {
   std::cout << MathUtils::random(0, 33);

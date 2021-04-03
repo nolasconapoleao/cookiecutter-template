@@ -3,7 +3,7 @@ project({{cookiecutter.project_name}})
 
 # Compilation flags definition
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-Wall -Wextra")
 
 find_program(CCACHE_FOUND ccache)
 if(CCACHE_FOUND)
@@ -23,14 +23,20 @@ else()
   set(CMAKE_BINARY_DIR ${CMAKE_HOME_DIRECTORY}/build/bin)
 endif()
 
-# Game executable
+# Project executable
 add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 target_include_directories(
   ${PROJECT_NAME}
   PRIVATE ${CMAKE_SOURCE_DIR}/external
           ${CMAKE_SOURCE_DIR}/src
 )
-add_subdirectory(src)
+
+include(tools/cmake/Libs.cmake)
+add_subdirectory(libs)
+target_link_libraries(${PROJECT_NAME}
+  PUBLIC
+  Custom::libsample
+)
 
 # Advanced compilation options
 option(ENABLE_TESTS "Compile and run unit tests" ON)
@@ -47,6 +53,7 @@ endif()
 if(ENABLE_COVERAGE)
   message("## Enable code coverage target")
   include(tools/cmake/Coverage.cmake)
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0 -fprofile-arcs -ftest-coverage")
 endif()
 
 if(ENABLE_TESTS)

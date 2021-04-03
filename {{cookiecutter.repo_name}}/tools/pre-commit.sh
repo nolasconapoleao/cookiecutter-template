@@ -1,5 +1,4 @@
 #!/bin/bash
-
 function append_eof_newline_if_needed() {
   file="${1}"
   if [[ $(tail -c1 "$file" | wc -l) -eq 0 ]]; then
